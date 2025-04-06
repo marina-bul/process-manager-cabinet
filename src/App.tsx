@@ -1,11 +1,13 @@
 import { CompanyPage } from "./components/CompanyPage/CompanyPage"
 import { Sidebar } from "./components/Sidebar/Sidebar"
 
+import './App.css'
+
 function App() {
   return (
-    <div style={{ display: 'flex', width: '100%' }}>
+    <div className="app_container">
       <Sidebar />
-      <main>
+      <main className="app_content">
         <CompanyPage />
       </main> 
     </div>

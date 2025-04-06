@@ -24,10 +24,3 @@ body {
   width: 100vw;
 }
 
-main {
-  padding: 40px 0;
-  width: 100%;
-  flex-grow: 1;
-  background-color: rgba(0, 0, 0, 0.03);
-}
-

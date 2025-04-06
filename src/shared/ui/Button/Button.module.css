@@ -19,7 +19,7 @@
   }
 
   &:active {
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: rgba(107, 107, 107, 1);
   }
 }
 
@@ -36,6 +36,21 @@
   &:active {
     color: rgba(98, 67, 230, 1);
     border-color: rgba(98, 67, 230, 1);
+  }
+}
+
+.ghost {
+  padding: 6px;
+  color: rgba(59, 59, 59, 1); 
+  background-color: transparent;
+  border-radius: 50%;
+
+  &:hover {
+    background-color: rgba(59, 59, 59, 0.05);
+  }
+
+  &:active {
+    background-color: rgba(153, 129, 255, 0.2);
   }
 }
 

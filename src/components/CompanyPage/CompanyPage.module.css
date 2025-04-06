@@ -16,3 +16,22 @@
   font-size: 28px;
   font-weight: 500;
 }
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+}
+
+.removeBtn {
+  color: rgba(215, 35, 35, 1);
+}
+
+.footer {
+  height: 40px;
+}

@@ -1,0 +1,36 @@
+.btn {
+  padding-right: 12px;
+  font-size: 11px;
+  line-height: 20px;
+  font-weight: 600;
+}
+
+.btnIcon {
+  width: 16px;
+  height: 16px;
+}
+
+.gallery {
+  display: flex;
+  align-items: center;
+  gap: 12px
+}
+
+.photoContainer {
+  position: relative;
+
+  width: 144px;
+  height: 108px;
+
+  background-color: rgba(0, 0, 0, 0.05);
+
+  border-radius: 8px;
+
+  overflow: hidden;
+}
+
+.removeBtn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
