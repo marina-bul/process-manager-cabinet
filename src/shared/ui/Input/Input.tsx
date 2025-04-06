@@ -7,17 +7,18 @@ import type { ChangeEvent, FC, InputHTMLAttributes } from 'react';
 
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  className?: string
+  className?: string;
+  numOnly?: boolean;
 }
 
+export const Input:FC<InputProps> = ({ value, numOnly, onChange, className, ...restProps }) => {
 
-
-export const Input:FC<InputProps> = ({ value, onChange, className, ...restProps }) => {
-  
     const [currentValue, setCurrentValue] = useState(value)
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-      setCurrentValue(e.target.value);
+      const editedValue = numOnly ? e.target.value.replace(/\D/g, '') : e.target.value
+      
+      setCurrentValue(editedValue);
 
       if(onChange) onChange(e);
       

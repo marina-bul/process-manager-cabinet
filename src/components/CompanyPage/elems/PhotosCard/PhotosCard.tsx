@@ -2,7 +2,7 @@
 // import cn from 'clsx';
 
 import { Button, CardWrapper } from '../../../../shared/ui';
-import { EditIcon, TrashIcon } from '../../../../shared/icons';
+import { AddPhotoIcon, TrashIcon } from '../../../../shared/icons';
 
 import styles from './PhotosCard.module.css'
 
@@ -13,7 +13,7 @@ export const PhotosCard = () => {
       title='Photos' 
       mainAction={
         <Button variant='outline' size='small' className={styles.btn}>
-          <EditIcon className={styles.btnIcon} />
+          <AddPhotoIcon className={styles.btnIcon} />
           Add
         </Button>
       }

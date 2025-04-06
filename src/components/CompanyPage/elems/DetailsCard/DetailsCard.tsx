@@ -11,7 +11,7 @@ export const DetailsCard = () => {
   const [agreement, setAgreement] = useState('1624/2-24');
   const [date] = useState('03.12.2024');
   const [entity, setEntity] = useState('Partnership');
-  const [type, setType] = useState('Funeral Home, Logistics services');
+  const [type, setType] = useState('Funeral Home');
 
   const options = [
     { label: "Sole Proprietorship", value: "Sole Proprietorship" },
@@ -20,9 +20,9 @@ export const DetailsCard = () => {
   ];
 
   const optionsCompany = [
-    { label: "Funeral Home", value: "Funeral Home" },
-    { label: "Logistics services", value: "Logistics services" },
-    { label: "Burial care Contractor", value: "Burial care Contractor" }
+    { label: "Funeral Home", value: "funeral_home" },
+    { label: "Logistics services", value: "logistics_services" },
+    { label: "Burial care Contractor", value: "burial_care_contractor" }
   ];
 
   const handleEdit = () => setIsEditing(true);
@@ -53,7 +53,7 @@ export const DetailsCard = () => {
       <div className={cn(styles.row, {[styles.editingMode]: isEditing})}>
         <span className={styles.rowName}>Business entity:</span> 
         {isEditing ? (
-          <Select options={options} onChange={(selected) => setEntity(selected[0])} />
+          <Select options={options} defaultSelected={[entity]} onChange={(selected) => setEntity(selected[0].value)} />
         ) : (
           <span>{entity}</span>
         )}
@@ -61,7 +61,7 @@ export const DetailsCard = () => {
       <div className={cn(styles.row, {[styles.editingMode]: isEditing})}>
         <span className={styles.rowName}>Company type:</span> 
         {isEditing ? (
-          <Select options={optionsCompany} checkboxOptions onChange={(selected) => setType(selected[0])} />
+          <Select options={optionsCompany} defaultSelected={[type]} checkboxOptions onChange={(selected) => setType(selected[0].value)} />
         ) : (
           <span>{type}</span>
         )}

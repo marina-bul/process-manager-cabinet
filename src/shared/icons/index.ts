@@ -9,3 +9,5 @@ export { SearchIcon } from './SearchIcon';
 export { SettingsIcon } from './SettingsIcon';
 export { SignOutIcon } from './SignOutIcon';
 export { TrashIcon } from './TrashIcon';
+export { ChevronIcon } from './ChevronIcon';
+export { AddPhotoIcon } from './AddPhotoIcon';

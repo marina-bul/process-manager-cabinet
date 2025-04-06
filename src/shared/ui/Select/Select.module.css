@@ -7,7 +7,7 @@
   font-size: 14px;
 }
 
-.input {
+.trigger {
   padding: 10px 12px;
 
   display: flex;
@@ -21,13 +21,13 @@
   cursor: pointer;
 }
 
-.input:hover {
+.trigger:hover {
   border-color: rgba(0, 0, 0, 0.5);
 }
 
-.input.focused {
+.trigger.focused {
   outline: none;
-  border-color: rgba(53, 205, 253, 1);
+  border: 2px solid rgba(53, 205, 253, 1);
 }
 
 .value {
@@ -35,13 +35,12 @@
 }
 
 .arrow {
-  width: 16px;
-  height: 16px;
+  transform: rotate(-90deg);
   transition: transform 0.2s ease;
 }
 
 .arrow.rotated {
-  transform: rotate(180deg);
+  transform: rotate(90deg);
 }
 
 .dropdown {
@@ -59,8 +58,6 @@
   z-index: 10;
   overflow: hidden;
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.16);
-  box-shadow: 0px -1px 4px 0px rgba(0, 0, 0, 0.04);
-
 }
 
 .option {
@@ -69,7 +66,6 @@
   align-items: center;
   gap: 14px;
   cursor: pointer;
-  transition: background 0.2s;
 }
 
 .option:hover {
@@ -78,12 +74,15 @@
 
 .option.selected {
   background-color: #f3f3f3;
-  font-weight: 500;
+}
+
+.option.selected .optionLabel {
+  font-weight: 500; 
 }
 
 .checkboxBox {
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
 
   display: flex;
   align-items: center;
@@ -95,8 +94,12 @@
 }
 
 .checkboxCheck {
-  width: 12px;
-  height: 12px;
+  width: 16px;
+  height: 16px;
 
   color: rgba(0, 0, 0, 0.8);
+}
+
+.optionLabel {
+  font-size: 13px;
 }
