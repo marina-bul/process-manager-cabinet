@@ -1,7 +1,7 @@
 import { makeAutoObservable, runInAction } from "mobx";
-import { apiService } from "../../api/ApiService";
+import { apiService } from "api/ApiService";
 
-import type { CompanyInfo, ContactInfo, Photo } from "../../types/general";
+import type { CompanyInfo, ContactInfo, Photo } from "types/general";
 
 class CompanyStore {
 

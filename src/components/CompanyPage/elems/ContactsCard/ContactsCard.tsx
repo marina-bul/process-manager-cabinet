@@ -1,12 +1,12 @@
 import { FC, useEffect, useState } from 'react';
 import cn from 'clsx';
 
-import { Input, Button, CardWrapper } from '../../../../shared/ui';
-import { EditIcon } from '../../../../shared/icons';
+import { Input, Button, CardWrapper } from 'shared/ui';
+import { EditIcon } from 'shared/icons';
 
 import styles from './ContactsCard.module.css';
 // import { ContactInfo } from '../../../../types/general';
-import CompanyStore from '../../../../shared/stores/CompanyStore';
+import CompanyStore from 'shared/stores/CompanyStore';
 import { observer } from 'mobx-react-lite';
 
 export const ContactsCard: FC = observer(( ) => {

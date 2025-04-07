@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import type { IconProps } from "../../types/general";
+import type { IconProps } from "types/general";
 
 export const ChevronIcon: FC<IconProps> = ({ className }) => {
   return (

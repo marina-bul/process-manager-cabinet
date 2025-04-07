@@ -1,11 +1,12 @@
 import { FC, useState } from 'react';
 import cn from 'clsx';
 
-import { Input, Select, Button, CardWrapper } from '../../../../shared/ui';
-import { EditIcon } from '../../../../shared/icons';
+import { Input, Select, Button, CardWrapper } from 'shared/ui';
+import { EditIcon } from 'shared/icons';
+import CompanyStore from 'shared/stores/CompanyStore';
+import { CompanyInfo } from 'types/general';
 
 import styles from './DetailsCard.module.css'
-import CompanyStore from '../../../../shared/stores/CompanyStore';
 import { observer } from 'mobx-react-lite';
 // import { CompanyInfo } from '../../../../types/general';
 

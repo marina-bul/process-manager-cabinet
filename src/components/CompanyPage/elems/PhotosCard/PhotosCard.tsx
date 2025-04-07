@@ -1,12 +1,12 @@
-// import { useState } from 'react';
-// import cn from 'clsx';
+import { FC, useState } from 'react';
+import cn from 'clsx';
 
-import { Button, CardWrapper } from '../../../../shared/ui';
-import { AddPhotoIcon, TrashIcon } from '../../../../shared/icons';
+import { Button, CardWrapper } from 'shared/ui';
+import { AddPhotoIcon, TrashIcon } from 'shared/icons';
+import CompanyStore from 'shared/stores/CompanyStore';
 
-import styles from './PhotosCard.module.css'
+import styles from './PhotosCard.module.css';
 import { observer } from 'mobx-react-lite';
-import CompanyStore from '../../../../shared/stores/CompanyStore';
 
 export const PhotosCard = observer(() => {
 

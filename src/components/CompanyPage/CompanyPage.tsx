@@ -1,16 +1,17 @@
 import { useEffect, useState } from 'react';
 import { observer } from 'mobx-react-lite';
 
+import CompanyStore from 'shared/stores/CompanyStore';
+import { Modal } from 'shared/ui/Modal/Modal';
+import { Button } from 'shared/ui';
+import { EditIcon, TrashIcon } from 'shared/icons';
+
 import { DetailsCard } from './elems/DetailsCard/DetailsCard';
 import { ContactsCard } from './elems/ContactsCard/ContactsCard';
 import { PhotosCard } from './elems/PhotosCard/PhotosCard';
 
 import styles from './CompanyPage.module.css'
-import { EditIcon, TrashIcon } from '../../shared/icons';
-import { Button } from '../../shared/ui';
 
-import { Modal } from '../../shared/ui/Modal/Modal';
-import CompanyStore from '../../shared/stores/CompanyStore';
 
 const Title = observer(() => (
   <h2 className={styles.title}>{CompanyStore.companyName}</h2>
