@@ -1,10 +1,11 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import cn from 'clsx';
 
 import styles from './Select.module.css';
 
-import type { FC } from 'react';
+import type { FC, RefObject } from 'react';
 import { CheckIcon, ChevronIcon } from '../../icons';
+import { useOnClickOutside } from '../../helpers/useOnClickOutside';
 
 interface Option {
   label: string;
@@ -32,6 +33,10 @@ export const Select: FC<SelectProps> = ({
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState(options.filter((o) => defaultSelected.includes(o.value)));
 
+  const selectRef = useRef<HTMLDivElement>(null);
+  
+  useOnClickOutside(selectRef as RefObject<HTMLElement>, () => setOpen(false));
+
   const toggleOption = (option: Option) => {
     if (multiple) {
       if (selected.some((selOption) => selOption.value === option.value)) {
@@ -57,7 +62,7 @@ export const Select: FC<SelectProps> = ({
   }, [selected, multiple]) ;
 
   return (
-    <div className={cn(styles.wrapper, className)}>
+    <div className={cn(styles.wrapper, className)} ref={selectRef}>
       <div
         className={cn(styles.trigger, { [styles.focused]: open })}
         tabIndex={0}

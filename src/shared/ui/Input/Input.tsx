@@ -11,7 +11,13 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   numOnly?: boolean;
 }
 
-export const Input:FC<InputProps> = ({ value, numOnly, onChange, className, ...restProps }) => {
+export const Input:FC<InputProps> = ({ 
+  value, 
+  numOnly, 
+  onChange, 
+  className, 
+  ...restProps 
+}) => {
 
     const [currentValue, setCurrentValue] = useState(value)
 
