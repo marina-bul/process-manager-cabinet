@@ -1,0 +1,39 @@
+.modalActions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+
+  margin-top: 24px;
+}
+
+.modalBtn {
+  width: 100%;
+  
+  font-weight: 600;
+}
+
+.dropZone {
+  padding: 20px;
+
+  text-align: center;
+
+  border-radius: 8px;
+  border: 2px dashed rgba(0, 0, 0, 0.2);
+
+  transition: border-color 0.2s;
+  cursor: pointer;
+}
+
+.dragOver {
+  border-color: rgba(0, 0, 0, 0.4);
+}
+
+.previewImage {
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.fileInput {
+  display: none;
+}

@@ -1,13 +1,14 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useState } from 'react';
+import { observer } from 'mobx-react-lite';
 import cn from 'clsx';
 
+import CompanyStore from 'shared/stores/CompanyStore';
 import { Input, Button, CardWrapper } from 'shared/ui';
 import { EditIcon } from 'shared/icons';
 
 import styles from './ContactsCard.module.css';
 // import { ContactInfo } from '../../../../types/general';
-import CompanyStore from 'shared/stores/CompanyStore';
-import { observer } from 'mobx-react-lite';
+
 
 export const ContactsCard: FC = observer(( ) => {
 
@@ -27,10 +28,6 @@ export const ContactsCard: FC = observer(( ) => {
     console.log(fieldName, newVal);
     
   }
-
-  useEffect(() => {
-    setIsEditing(!contacts)
-  }, [contacts])
 
   return (
     <CardWrapper 

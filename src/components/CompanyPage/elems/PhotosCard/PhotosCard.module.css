@@ -13,11 +13,14 @@
 .gallery {
   display: flex;
   align-items: center;
-  gap: 12px
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
 .photoContainer {
   position: relative;
+
+  flex-shrink: 0;
 
   width: 144px;
   height: 108px;

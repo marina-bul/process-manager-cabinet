@@ -17,11 +17,11 @@ class CompanyStore {
       makeAutoObservable(this);
     }
 
-    private setContacts(newContacts: ContactInfo) {
+    private setContacts(newContacts: ContactInfo | null) {
         this.contacts = newContacts;
     }
 
-    private setCompanyInfo(newInfo: CompanyInfo) {
+    private setCompanyInfo(newInfo: CompanyInfo | null) {
       this.companyInfo = newInfo;
     }
 
@@ -63,14 +63,46 @@ class CompanyStore {
         try {
             const res = await apiService.deleteCompany(this.companyId);
             if (res.status === 200) {
-                this.companyInfo = null;
+              runInAction(() => {
+                this.setContacts(null)
+                this.setCompanyInfo(null)
+                this.setPhotos([]) 
+                this.setCompanyName('')
+              })
             } else {
-                console.error('The server responded with the status', res.status);
+                console.error('DELETE COMPANY: The server responded with the status ', res.status);
             }
         } catch (err) {
             console.error(err);
         }
     };
+
+    uploadPhotoAction = async (photo: File) => {
+      try {
+        const res = await apiService.uploadCompanyImage(this.companyId, photo); 
+
+        if (res.status === 200) {
+          this.setPhotos([...this.photos, res.data]);
+        } else {
+            console.error('DELETE COMPANY: The server responded with the status ', res.status);
+        }
+      } catch (error) {
+            console.error(error); 
+      } 
+    }
+
+    deletePhotoAction = async (photoName: string) => {
+      try {
+          const res = await apiService.deleteCompanyImage(this.companyId, photoName);
+          if (res.status === 200) {
+            this.setPhotos(this.photos.filter(photo => photo.name !== photoName));
+          } else {
+              console.error('DELETE PHOTO: The server responded with the status ', res.status);
+          }
+      } catch (err) {
+          console.error(err);
+      }
+  };
     
 }
 

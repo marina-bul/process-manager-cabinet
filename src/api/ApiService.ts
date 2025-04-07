@@ -5,7 +5,7 @@ import type {
   ContactInfoResponse, 
   ContactInfo,
   CompanyInfo  
-} from '../types/general';
+} from 'types/general';
 
 class ApiService {
     private api: AxiosInstance;
@@ -59,13 +59,9 @@ class ApiService {
 
     uploadCompanyImage(id: string, imageFile: File) {
         const formData = new FormData();
-        formData.append('image', imageFile);
+        formData.append('file', imageFile);
 
-        return this.api.post(`/companies/${id}/image`, formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data',
-            },
-        });
+        return this.api.post(`/companies/${id}/image`, formData);
     }
 
     deleteCompanyImage(id: string, imageName: string) {
