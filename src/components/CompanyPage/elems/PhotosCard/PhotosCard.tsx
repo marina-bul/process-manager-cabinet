@@ -5,8 +5,12 @@ import { Button, CardWrapper } from '../../../../shared/ui';
 import { AddPhotoIcon, TrashIcon } from '../../../../shared/icons';
 
 import styles from './PhotosCard.module.css'
+import { observer } from 'mobx-react-lite';
+import CompanyStore from '../../../../shared/stores/CompanyStore';
 
-export const PhotosCard = () => {
+export const PhotosCard = observer(() => {
+
+  const { photos } = CompanyStore;
 
   return (
     <CardWrapper 
@@ -19,21 +23,16 @@ export const PhotosCard = () => {
       }
     >
       <div className={styles.gallery}>
-        <div className={styles.photoContainer}>
-          <img src='/image1.png' alt="company photo" width={144} height={108} />
-          <Button size='square' className={styles.removeBtn}>
-            <TrashIcon />
-          </Button> 
-        </div>
-
-        <div className={styles.photoContainer}>
-          <img src='/image2.png' alt="company photo" width={144} height={108} />
-          <Button size='square' className={styles.removeBtn}>
-            <TrashIcon />
-          </Button> 
-        </div>
+        {photos.map((photo) => (
+          <div className={styles.photoContainer} key={photo.name}>
+            <img src={photo.filepath} alt="company photo" width={144} height={108} />
+            <Button size='square' className={styles.removeBtn}>
+              <TrashIcon />
+            </Button> 
+          </div>   
+        ))}
       </div>
       
     </CardWrapper>           
   )
-}
+})

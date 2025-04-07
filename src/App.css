@@ -16,3 +16,8 @@
 
   background-color: rgba(0, 0, 0, 0.03);
 }
+
+.empty_content {
+  font-size: 28px;
+  text-align: center;
+}

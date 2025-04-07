@@ -1,17 +1,22 @@
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import cn from 'clsx';
 
 import { Input, Select, Button, CardWrapper } from '../../../../shared/ui';
 import { EditIcon } from '../../../../shared/icons';
 
 import styles from './DetailsCard.module.css'
+import CompanyStore from '../../../../shared/stores/CompanyStore';
+import { observer } from 'mobx-react-lite';
+// import { CompanyInfo } from '../../../../types/general';
 
-export const DetailsCard = () => {
+// interface DetailsCardProps {
+//   companyInfo: CompanyInfo | null
+// }
+
+export const DetailsCard: FC = observer(() => {
   const [isEditing, setIsEditing] = useState(false);
-  const [agreement, setAgreement] = useState('1624/2-24');
-  const [date] = useState('03.12.2024');
-  const [entity, setEntity] = useState('Partnership');
-  const [type, setType] = useState('Funeral Home');
+
+  const { companyInfo } = CompanyStore;
 
   const options = [
     { label: "Sole Proprietorship", value: "Sole Proprietorship" },
@@ -28,6 +33,7 @@ export const DetailsCard = () => {
   const handleEdit = () => setIsEditing(true);
   const handleCancel = () => setIsEditing(false);
   const handleSave = () => setIsEditing(false);
+  
 
   return (
     <CardWrapper 
@@ -45,27 +51,35 @@ export const DetailsCard = () => {
       <div className={cn(styles.row, {[styles.editingMode]: isEditing})}>
         <span className={styles.rowName}>Agreement:</span> 
         {isEditing ? (
-          <Input value={agreement} onChange={(e) => setAgreement(e.target.value)} />
+          <Input value={companyInfo?.contract.no} onChange={(e) => console.log(e.target.value)} />
         ) : (
-          <span>{agreement} / {date}</span>
+          <span>{companyInfo?.contract.no} / {companyInfo?.contract.issue_date}</span>
         )}
       </div>
       <div className={cn(styles.row, {[styles.editingMode]: isEditing})}>
         <span className={styles.rowName}>Business entity:</span> 
         {isEditing ? (
-          <Select options={options} defaultSelected={[entity]} onChange={(selected) => setEntity(selected[0].value)} />
+          <Select 
+            options={options} 
+            defaultSelected={companyInfo?.businessEntity ? [companyInfo?.businessEntity] : []} 
+            onChange={(selected) => console.log(selected[0].value)}
+          />
         ) : (
-          <span>{entity}</span>
+          <span>{companyInfo?.businessEntity}</span>
         )}
       </div>
       <div className={cn(styles.row, {[styles.editingMode]: isEditing})}>
         <span className={styles.rowName}>Company type:</span> 
         {isEditing ? (
-          <Select options={optionsCompany} defaultSelected={[type]} checkboxOptions onChange={(selected) => setType(selected[0].value)} />
+          <Select 
+            options={optionsCompany} 
+            defaultSelected={companyInfo?.type} 
+            checkboxOptions 
+            onChange={(selected) => console.log(selected[0].value)} />
         ) : (
-          <span>{type}</span>
+          <span>{companyInfo?.type}</span>
         )}
       </div>
     </CardWrapper>           
   )
-}
+})

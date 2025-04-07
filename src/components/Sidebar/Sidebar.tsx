@@ -8,6 +8,7 @@ import {
   SignOutIcon
 } from '../../shared/icons'
 import { Button } from '../../shared/ui'
+
 import styles from './Sidebar.module.css'
 
 

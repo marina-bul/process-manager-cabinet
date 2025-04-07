@@ -1,3 +1,6 @@
+import { useEffect, useState } from 'react';
+import { observer } from 'mobx-react-lite';
+
 import { DetailsCard } from './elems/DetailsCard/DetailsCard';
 import { ContactsCard } from './elems/ContactsCard/ContactsCard';
 import { PhotosCard } from './elems/PhotosCard/PhotosCard';
@@ -5,22 +8,37 @@ import { PhotosCard } from './elems/PhotosCard/PhotosCard';
 import styles from './CompanyPage.module.css'
 import { EditIcon, TrashIcon } from '../../shared/icons';
 import { Button } from '../../shared/ui';
-import { useState } from 'react';
+
 import { Modal } from '../../shared/ui/Modal/Modal';
+import CompanyStore from '../../shared/stores/CompanyStore';
+
+const Title = observer(() => (
+  <h2 className={styles.title}>{CompanyStore.companyName}</h2>
+));
 
 export const CompanyPage = () => {
 
+  const {
+    getStoreInfo,
+    deleteCompanyAction, 
+  } = CompanyStore
+
   const [modalOpen, setModalOpen] = useState(false)
+
+  useEffect(() => {
+    getStoreInfo();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h2 className={styles.title}>Eternal Rest Funeral Home</h2>
+        <Title />
         <div className={styles.actions}>
           <Button variant='ghost' onClick={() => setModalOpen(true)}>
             <EditIcon />
           </Button>
-          <Button variant='ghost' className={styles.removeBtn}>
+          <Button variant='ghost' className={styles.removeBtn} onClick={deleteCompanyAction}>
             <TrashIcon />
           </Button>
         </div>
