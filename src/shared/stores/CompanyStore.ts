@@ -98,7 +98,8 @@ class CompanyStore {
             if (!this.companyInfo) {
               const updatedCompanyInfo = {
                 ...emptyCompany,
-                ...data
+                ...data,
+                contract: {...data.contract}
               };
               this.setCompanyInfo(updatedCompanyInfo);
               this.setCompanyName(updatedCompanyInfo.name);
@@ -108,7 +109,8 @@ class CompanyStore {
             
             const updatedCompanyInfo = {
               ...this.companyInfo,
-              ...data
+              ...data,
+              contract: {...this.companyInfo.contract,...data.contract}
             };
             this.setCompanyInfo(updatedCompanyInfo);
             this.setCompanyName(updatedCompanyInfo.name);

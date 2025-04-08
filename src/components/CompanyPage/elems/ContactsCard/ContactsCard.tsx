@@ -23,7 +23,7 @@ export const ContactsCard: FC = observer(( ) => {
   const { contacts, updateContactsAction } = CompanyStore;
 
   const [ isEditing, setIsEditing ] = useState(false);
-  const [ changedContacts, setChangedContacts ] = useState<Partial<ContactInfo>>();
+  const [ changedContacts, setChangedContacts ] = useState<Partial<ContactInfo> | null>();
 
   const handleEdit = () => setIsEditing(true);
   const handleCancel = () => setIsEditing(false);
@@ -47,6 +47,7 @@ export const ContactsCard: FC = observer(( ) => {
 
     updateContactsAction(updated);
     setIsEditing(false);
+    setChangedContacts(null);
   }, [changedContacts, updateContactsAction]);
 
   const handleUpdateContacts = (fieldName: keyof ContactInfo, newVal: string) => {

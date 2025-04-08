@@ -22,4 +22,21 @@ export function formatPhone(phone?: string): string {
   const lineNumber = digits.slice(7);
 
   return `+${countryCode} ${areaCode} ${prefix} ${lineNumber}`;
+};
+
+export const dateFormatter = {
+  toDisplay: (dateStr?: string) => {
+    if(!dateStr) return;
+
+    const date = new Date(dateStr);
+    const day = String(date.getUTCDate()).padStart(2, '0');
+    const month = String(date.getUTCMonth() + 1).padStart(2, '0');
+    const year = date.getUTCFullYear();
+    return `${day}.${month}.${year}`;
+  },
+
+  toISO: (dateStr: string) => {
+    const [day, month, year] = dateStr.split('.');
+    return new Date(`${year}-${month}-${day}T00:00:00Z`).toISOString();
+  },
 }

@@ -26,8 +26,21 @@
   }
 }
 
-.rowName {
+.label {
   width: 160px;
+
+  flex-shrink: 0;
 
   color: rgba(0, 0, 0, 0.5);
 }
+
+.inputsGroup {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.additionalLabel {
+  color: rgba(0, 0, 0, 0.5);
+}
+
