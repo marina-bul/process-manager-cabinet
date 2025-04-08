@@ -34,7 +34,7 @@ To run the project locally, follow these steps:
     npm install
     ```
 
-  or for yarn
+    or for yarn
 
     ```bash
     yarn install
@@ -43,15 +43,15 @@ To run the project locally, follow these steps:
 
 4. **Start the development server:**
 
-   ```bash
-   npm run dev
-  ```
-
-  or for yarn
-
     ```bash
-    yarn dev
+    npm run dev
     ```
+
+    or for yarn
+
+      ```bash
+      yarn dev
+      ```
 
 5. **Open the application in your browser:**
 
