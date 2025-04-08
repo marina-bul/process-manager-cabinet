@@ -1,3 +1,4 @@
+import { useAuth } from 'shared/helpers/useAuth'
 import { 
   AccountIcon,
   CompanyIcon,
@@ -6,19 +7,22 @@ import {
   SearchIcon,
   SettingsIcon,
   SignOutIcon
-} from '../../shared/icons'
-import { Button } from '../../shared/ui'
+} from 'shared/icons'
+import { Button } from 'shared/ui'
 
 import styles from './Sidebar.module.css'
 
 
 export const Sidebar = () => {
+
+  const { logout } = useAuth()
+
   return (
     <div className={styles.sidebar}>
       <div className={styles.navbar}>
         <div className={styles.top}>
           <Logo />
-          <Button className={styles.menuButton} size='square'>
+          <Button className={styles.menuButton} size='square' isActive>
            <CompanyIcon /> 
           </Button>
           <Button className={styles.menuButton} size='square'>
@@ -26,14 +30,16 @@ export const Sidebar = () => {
           </Button>
         </div>
         <div className={styles.bottom}>
+          <hr className={styles.divider} />
           <Button className={styles.menuButton} size='square'>
            <SettingsIcon /> 
           </Button>
-          <Button className={styles.menuButton} size='square'>
+          <Button className={styles.menuButton} size='square' onClick={logout}>
            <SignOutIcon /> 
           </Button>
         </div>
       </div>
+
       <div className={styles.content}>
         <div>
           <div className={styles.header}>

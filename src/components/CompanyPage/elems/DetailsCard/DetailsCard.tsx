@@ -111,7 +111,12 @@ export const DetailsCard: FC = observer(() => {
           </div>
           
         ) : (
-          <span>{companyInfo?.contract.no} / {dateFormatter.toDisplay(companyInfo?.contract.issue_date)}</span>
+          <p>
+            {companyInfo?.contract.no}
+            <span className={styles.textDivider}>/</span> 
+            {dateFormatter.toDisplay(companyInfo?.contract.issue_date)}
+
+          </p>
         )}
       </div>
       <div className={cn(styles.row, {[styles.editingMode]: isEditing})}>

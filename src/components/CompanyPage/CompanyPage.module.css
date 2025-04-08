@@ -5,11 +5,18 @@
 }
 
 .header {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 16px;
   margin-bottom: 32px;
+}
+
+.navBtn {
+  position: absolute;
+  left: -76px;
+  top: 0;
 }
 
 .title {
@@ -23,8 +30,7 @@
   gap: 16px;
 }
 
-.actions,
-.modalActions {
+.actions {
   display: flex;
   align-items: center;
 }
@@ -38,6 +44,8 @@
 }
 
 .modalActions {
+  display: flex;
+  align-items: center;
   justify-content: space-between;
   gap: 16px;
 

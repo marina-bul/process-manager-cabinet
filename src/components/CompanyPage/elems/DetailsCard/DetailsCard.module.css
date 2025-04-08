@@ -16,14 +16,14 @@
 
   width: 100%;
   min-height: 32px;
+}
 
-  &.editingMode {
-    margin-bottom: 12px;
+.row.editingMode {
+  margin-bottom: 12px;
+} 
 
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
+.row.editingMode:last-child {
+  margin-bottom: 0;
 }
 
 .label {
@@ -42,5 +42,9 @@
 
 .additionalLabel {
   color: rgba(0, 0, 0, 0.5);
+}
+
+.textDivider {
+  padding: 0 12px;
 }
 

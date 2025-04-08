@@ -3,7 +3,7 @@ import { observer } from 'mobx-react-lite';
 
 import CompanyStore from 'shared/stores/CompanyStore';
 import { Button } from 'shared/ui';
-import { EditIcon, TrashIcon } from 'shared/icons';
+import { ChevronIcon, EditIcon, TrashIcon } from 'shared/icons';
 import { EditNameModal, RemoveModal } from 'components/Modals';
 
 import { DetailsCard } from './elems/DetailsCard/DetailsCard';
@@ -23,6 +23,9 @@ const Header = observer(() => {
   return (
     <>
       <div className={styles.header}>
+        <Button variant='ghost' className={styles.navBtn}>
+          <ChevronIcon />
+        </Button>
         <h2 className={styles.title}>{companyName}</h2>
         <div className={styles.actions}>
           <Button variant='ghost' onClick={() => setIsEditModalOpen(true)}>
@@ -61,7 +64,7 @@ export const CompanyPage = () => {
   }, [])
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container}>    
       <Header />
 
       <div className={styles.content}>

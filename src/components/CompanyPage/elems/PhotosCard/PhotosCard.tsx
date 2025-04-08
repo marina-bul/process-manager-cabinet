@@ -1,5 +1,4 @@
 import { useState } from 'react';
-// import cn from 'clsx';
 import { observer } from 'mobx-react-lite';
 
 import CompanyStore from 'shared/stores/CompanyStore';
