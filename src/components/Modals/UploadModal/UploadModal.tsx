@@ -1,8 +1,7 @@
 import { FC, useRef, useState, useCallback } from 'react';
 import cn from 'clsx';
 
-import { Button } from 'shared/ui';
-import { Modal } from 'shared/ui/Modal/Modal';
+import { Button, Modal } from 'shared/ui';
 
 import styles from './UploadModal.module.css';
 

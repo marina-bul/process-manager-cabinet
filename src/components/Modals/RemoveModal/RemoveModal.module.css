@@ -1,0 +1,18 @@
+.modalActions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+
+  margin-top: 24px;
+}
+
+.modalBtn {
+  width: 100%;
+  
+  font-weight: 600;
+}
+
+.text {
+  text-align: center;
+}

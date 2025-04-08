@@ -77,6 +77,87 @@ class CompanyStore {
         }
     };
 
+    updateCompanyAction = async (data: Partial<CompanyInfo>) => {
+      const emptyCompany: CompanyInfo = {
+        id: '',
+        name: '',
+        shortName: '',
+        businessEntity: '',
+        contract: {
+          no: '',
+          issue_date: ''
+        },
+        type: [],
+        photos: []
+      };
+
+      try {
+        const res = await apiService.updateCompany(this.companyId, data);
+        if (res.status === 200) {
+          runInAction(() => {
+            if (!this.companyInfo) {
+              const updatedCompanyInfo = {
+                ...emptyCompany,
+                ...data
+              };
+              this.setCompanyInfo(updatedCompanyInfo);
+              this.setCompanyName(updatedCompanyInfo.name);
+              this.setPhotos(updatedCompanyInfo.photos)
+              return;
+            }
+            
+            const updatedCompanyInfo = {
+              ...this.companyInfo,
+              ...data
+            };
+            this.setCompanyInfo(updatedCompanyInfo);
+            this.setCompanyName(updatedCompanyInfo.name);
+            this.setPhotos(updatedCompanyInfo.photos)
+          });
+        } else {
+          console.error('UPDATE COMPANY: The server responded with the status ', res.status);
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    updateContactsAction = async (data: Partial<ContactInfo>) => {
+      const emptyContact: ContactInfo = {
+        id: '',
+        firstname: '',
+        lastname: '',
+        phone: '',
+        email: ''
+      };
+
+      try {
+        const res = await apiService.updateContact(this.contacts?.id || '0', data);
+        if (res.status === 200) {
+          runInAction(() => {
+            if (!this.contacts) {
+              const updatedContact = {
+                ...emptyContact,
+                ...data
+              };
+              this.setContacts(updatedContact);
+              return;
+            }
+            
+            const updatedContact = {
+              ...this.contacts,
+              ...data
+            };
+            this.setContacts(updatedContact);
+          });
+        } else {
+          console.error('UPDATE CONTACTS: The server responded with the status ', res.status);
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
     uploadPhotoAction = async (photo: File) => {
       try {
         const res = await apiService.uploadCompanyImage(this.companyId, photo); 

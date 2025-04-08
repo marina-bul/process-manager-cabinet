@@ -1,33 +1,78 @@
-import { FC, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { observer } from 'mobx-react-lite';
 import cn from 'clsx';
 
 import CompanyStore from 'shared/stores/CompanyStore';
+import { 
+  formatPhone, 
+  validateEmail, 
+  validatePhone 
+} from 'shared/helpers/formatFuncs';
 import { Input, Button, CardWrapper } from 'shared/ui';
 import { EditIcon } from 'shared/icons';
 
 import styles from './ContactsCard.module.css';
-// import { ContactInfo } from '../../../../types/general';
+
+import type { FC } from 'react';
+import type { ContactInfo } from 'types/general';
+
 
 
 export const ContactsCard: FC = observer(( ) => {
 
-  const { contacts } = CompanyStore
+  const { contacts, updateContactsAction } = CompanyStore;
 
   const [ isEditing, setIsEditing ] = useState(false);
+  const [ changedContacts, setChangedContacts ] = useState<Partial<ContactInfo>>();
 
   const handleEdit = () => setIsEditing(true);
   const handleCancel = () => setIsEditing(false);
 
-  const handleSave = () => {
-    console.log('save contacts: ')
-    setIsEditing(false)
+  const handleSave = useCallback(() => {
+    if(!changedContacts) return 
+
+    const updated = { ...changedContacts };
+
+    if (updated.phone) {
+      if (!validatePhone(updated.phone)) {
+        throw new Error('Wrong phone number'); 
+      }
+    }
+
+    if (updated.email) {
+      if (!validateEmail(updated.email)) {
+        throw new Error('Wrong email');
+      }
+    }
+
+    updateContactsAction(updated);
+    setIsEditing(false);
+  }, [changedContacts, updateContactsAction]);
+
+  const handleUpdateContacts = (fieldName: keyof ContactInfo, newVal: string) => {
+    if (fieldName === 'firstname') {
+      const [firstname, lastname] = newVal.split(' ');
+      setChangedContacts(prev => ({
+        ...prev,
+        firstname: firstname || '',
+        lastname: lastname || '',
+      }));
+      return;
+    }
+
+    setChangedContacts(prev => ({
+      ...prev,
+      [fieldName]: newVal
+    }));
   };
 
-  const handleUpdateContacts = (fieldName: string, newVal: string) => {
-    console.log(fieldName, newVal);
-    
-  }
+  const fullName = useMemo(() => {
+
+    if(!contacts) return '';
+
+    return `${contacts.firstname} ${contacts.lastname}`
+
+  }, [contacts])
 
   return (
     <CardWrapper 
@@ -46,11 +91,11 @@ export const ContactsCard: FC = observer(( ) => {
         <span className={styles.rowName}>Responsible person:</span> 
         {isEditing ? (
           <Input 
-            value={`${contacts?.firstname} ${contacts?.lastname}`} 
-            onChange={(e) => handleUpdateContacts('contactName', e.target.value)} 
+            value={fullName} 
+            onChange={(e) => handleUpdateContacts('firstname', e.target.value)} 
           />
         ) : (
-          <span>{`${contacts?.firstname} ${contacts?.lastname}`}</span>
+          <span>{fullName}</span>
         )}
       </div>
       <div className={cn(styles.row, {[styles.editingMode]: isEditing})}>
@@ -62,7 +107,7 @@ export const ContactsCard: FC = observer(( ) => {
             numOnly 
             onChange={(e) => handleUpdateContacts('phone', e.target.value)}  />
         ) : (
-          <span>{contacts?.phone}</span>
+          <span>{contacts?.phone ? formatPhone(contacts.phone) : ''}</span>
         )}
       </div>
       <div className={cn(styles.row, {[styles.editingMode]: isEditing})}>

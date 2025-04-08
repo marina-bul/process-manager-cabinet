@@ -26,7 +26,7 @@ export interface CompanyInfoResponse {
   updatedAt: string
 }
 
-export type CompanyInfo = Pick<CompanyInfoResponse, 'id' | 'name' | 'businessEntity' | 'contract' | 'type' | 'photos'>;
+export type CompanyInfo = Omit<CompanyInfoResponse, 'status' | 'createdAt' | 'updatedAt' | 'contactId'>;
 
 export interface ContactInfoResponse {
   id: string,
